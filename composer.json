@@ -1,0 +1,51 @@
+{
+    "name": "shahabzebare/nova-resources-lazy-loading",
+    "description": "This package enables lazy loading of only the necessary resources. If you have 120 resources, it will help improve Nova's bootup speed by loading only what's needed.",
+    "keywords": [
+        "shahabzebare",
+        "nova-resources-lazy-loading"
+    ],
+    "homepage": "https://github.com/shahabzebare/nova-resources-lazy-loading",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Shahab Al Zebari",
+            "email": "me@shahabzebari.net",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "spatie/laravel-package-tools": "^1.12"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Shahabzebare\\NovaResourcesLazyLoading\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Shahabzebare\\NovaResourcesLazyLoading\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Shahabzebare\\NovaResourcesLazyLoading\\NovaResourcesLazyLoadingServiceProvider"
+            ]
+        }
+    }
+}

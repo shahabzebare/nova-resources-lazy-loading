@@ -25,7 +25,7 @@ trait ResourceLazyLoading
             if($resource) {
                 $resources = $this->readJsonFileFromStorage();
                 if(array_key_exists($resource, $resources)) {
-                    if($request->route()?->getName() === 'nova.pages.detail') {
+                    if($request->route()?->getName() === 'nova.pages.detail' || $request->route()?->getName() === 'nova.pages.attach') {
                         Nova::resources($resources[$resource]);
                     } else {
                         Nova::resources([$resources[$resource][0]]);

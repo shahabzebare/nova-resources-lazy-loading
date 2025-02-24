@@ -13,9 +13,11 @@ use Laravel\Nova\Fields\HasManyThrough;
 use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Nova;
 use Laravel\Nova\Resource;
 use ReflectionClass;
 use ReflectionException;
+use Shahabzebare\NovaResourcesLazyLoading\NovaLazyLoading;
 use Symfony\Component\Finder\Finder;
 
 class FindNovaResourceRelationShipForResource extends Command
@@ -53,6 +55,11 @@ class FindNovaResourceRelationShipForResource extends Command
                 $resources[Str::plural(Str::kebab(class_basename($resource)))] = $resource;
             }
         }
+
+        foreach (NovaLazyLoading::$resources as $resource) {
+            $resources[Str::plural(Str::kebab(class_basename($resource)))] = $resource;
+        }
+
         return $resources;
     }
 
@@ -82,7 +89,7 @@ class FindNovaResourceRelationShipForResource extends Command
             // Cache the child resources
             $resourceForCache[$key] = $childResource;
         }
-
+        
         // Write to file as JSON
         file_put_contents(storage_path('nova-relationship.json'), json_encode($resourceForCache));
 
